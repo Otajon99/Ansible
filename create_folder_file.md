@@ -1,5 +1,5 @@
 
-### Creating dir1 file with 755 permission
+### 1)  Creating dir1 file with 755 permission
 ```
 ---
 - hosts: all
