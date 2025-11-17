@@ -1,3 +1,4 @@
+```
 ---
 - hosts: all
   become: true
@@ -7,3 +8,5 @@
         path: /var/logs/app/daily_logs
         state: directory
         mode: '0755'
+
+```
