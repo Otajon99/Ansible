@@ -53,3 +53,19 @@
         part_start: 6GiB   # start right after partition 1
         part_end: 10GiB    # or whatever size you want
 ```
+
+
+### 4) Pinging server and printing Hello World message
+
+```
+---
+- name: My first play
+  hosts: node1
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+    - name: Print message
+      ansible.builtin.debug:
+        msg: Hello world.
+
+```
