@@ -69,3 +69,20 @@
         msg: Hello world.
 
 ```
+
+### 5) Copying file from local machine to server
+
+```
+---
+- name: Copy file from local to remote clients
+hosts: group1
+tasks:
+  - name: Copying file
+    become: true
+  - copy:
+      src: /root/some.cfg
+      dest: /root
+      owner: root
+      group: root
+      mode: 0777
+```
