@@ -86,3 +86,41 @@ tasks:
       group: root
       mode: 0777
 ```
+
+### 6) 
+
+```
+---
+- name: httpd
+  hosts: all
+  become: yes
+  tasks:
+ 
+# TAKS-1
+    - name: installing httpd
+      yum:
+        name: httpd
+        state: present
+# TAKS-2
+    - name: copy file from local to remote
+      copy:
+        src: /home/ansible/files/myfile
+        dest: /var/www/html/index.html
+ 
+     
+    # - name: if httpd installed
+    #   shell: rpm -qa | grep httpd
+    #   register: httpd_installed
+ 
+    # - name: get output from previous task
+    #   debug:
+    #     var: httpd_installed.stdout
+ 
+    - name: ls
+      shell: cat /var/www/html/index.html
+      register: html_content
+ 
+    - name: show html content
+      debug:
+        msg: "{{ html_content.stdout }}"
+```
