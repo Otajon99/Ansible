@@ -87,7 +87,7 @@ tasks:
       mode: 0777
 ```
 
-### 6) 
+### 6) Checking our job is done or not from master server
 
 ```
 ---
