@@ -124,3 +124,68 @@ tasks:
       debug:
         msg: "{{ html_content.stdout }}"
 ```
+
+### Setting up Firewall, adding ports
+
+```
+---
+- name: Configure firewall on server
+  hosts: all
+  become: yes
+ 
+  tasks:
+ 
+    - name: Install firewalld
+      ansible.builtin.package:
+        name: firewalld
+        state: present
+ 
+    - name: Ensure firewalld service is enabled and running
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: yes
+ 
+    - name: Open required ports in firewall
+      ansible.posix.firewalld:
+        port: "{{ item }}"
+        permanent: yes
+        state: enabled
+        immediate: yes
+      loop:
+        - "80/tcp"     # HTTP
+        - "443/tcp"    # HTTPS
+        - "22/tcp"     # SSH (ensure you don't lock yourself out)
+ 
+    - name: Reload firewalld to apply changes
+      ansible.posix.firewalld:
+        state: reloaded
+```
+
+### Removing 443/tcp port
+
+```
+---
+- name: Configure firewall on server
+  hosts: node1
+  become: yes
+ 
+  tasks:
+ 
+    - name: Ensure firewalld service is enabled and running
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: yes
+ 
+    - name: Remove tcp port in firewall
+      ansible.posix.firewalld:
+        port: "443/tcp"
+        permanent: yes
+        state: disabled
+        immediate: yes
+ 
+    - name: Reload firewalld to apply changes
+      ansible.posix.firewalld:
+        state: enabled
+```
