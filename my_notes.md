@@ -125,7 +125,7 @@ tasks:
         msg: "{{ html_content.stdout }}"
 ```
 
-### Setting up Firewall, adding ports
+### 7)  Setting up Firewall, adding ports
 
 ```
 ---
@@ -162,7 +162,7 @@ tasks:
         state: reloaded
 ```
 
-### Removing 443/tcp port
+### 8)   Removing 443/tcp port
 
 ```
 ---
