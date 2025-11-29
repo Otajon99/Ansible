@@ -42,7 +42,7 @@
       ansible.builtin.mount:
         path: /data
         src: /dev/data_vg/data_lv
+        fstype: xfs
+        state: mounted
 
 ```
-``     fstype: xfs
-        state: mounted
