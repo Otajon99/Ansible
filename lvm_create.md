@@ -1,3 +1,7 @@
+### Partitioning disk, physical volume, volume group, logical volume, create filesystem, mounting directory
+
+```
+
 ---                                                                                                             
 - name: Test Playbook
   hosts: dev
@@ -38,5 +42,7 @@
       ansible.builtin.mount:
         path: /data
         src: /dev/data_vg/data_lv
-        fstype: xfs
+
+```
+``     fstype: xfs
         state: mounted
